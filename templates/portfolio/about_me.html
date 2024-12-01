@@ -1,0 +1,51 @@
+<!-- templates/portfolio/about_me.html -->
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- About Me Section -->
+<section id="about">
+    <h1>About Me</h1>
+    <div class="about-container">
+        <img src="{% static 'images/galiakraicheva.jpg' %}" alt="Galia Kraicheva Photo" class="profile-picture">
+        <div class="description">
+            <p>Hello! My name is Galia Kraicheva. I am a person with good interest in mathematics, statistics, biology, neuroscience and cosmology. On this website, you can see my thoughts about science.</p>
+            <p></p>
+        </div>
+    </div>
+</section>
+
+<!-- Publications Section -->
+<section id="publications">
+    <h2>Publications and Articles</h2>
+    <ul>
+        {% for publication in publications %}
+            <li>
+                <h3>{{ publication.title }}</h3>
+                <h3>{{ publication.title }}</h3>
+                {% if publication.description %}
+                    <p>{{ publication.description }}</p>
+                {% endif %}
+                {% if publication.link %}
+                    <p><a href="{{ publication.link }}" target="_blank">{{ publication.link }}</a></p>
+                {% endif %}
+                {% if publication.file %}
+                    <p><a href="{{ publication.file.url }}" download>Download File</a></p>
+                {% endif %}
+                <p>Posted on: {{ publication.date_posted|date:"F j, Y" }}</p>
+            </li>
+        {% empty %}
+            <li>No publications available at this time.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <ul>
+        <li>Email: <a href="maito:galia.kraicheva@gmail.com">galia.kraicheva@gmail.com</a></li>
+        <li>LinkedIn: <a href="https://www.linkedin.com/in/galiakraicheva" target="_blank">linkedin.com/in/galiakraicheva</a></li>
+    </ul>
+</section>
+{% endblock %}
